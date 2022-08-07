@@ -1,0 +1,496 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+	--speed: 0.3s;
+	--speedBig: 0.3s;
+	--animationState: paused;
+	--direction: up;
+	--distance: -80px;
+	--distanceBig: -360px;
+	--type: cubic-bezier(0, 0, 0.21, 0.78);
+	--nameBig: upBig;
+
+	--subDirection: reverse;
+	--mapDirection: normal;
+	--subDelay: 0.3s;
+	--mapDelay: 0.0s;
+	--subOpacity: 0.0;
+	--mapOpacity: 1.0;
+	--subPointer: none;
+	--mapPointer: all;
+}
+/*|||||||||||||||||||||||||||||||||||||*/
+
+
+html {
+	background-color: white;
+	font-family:arial;
+}
+
+body {
+	height: 100vh;
+	margin: 0px;
+}
+
+.flex-base {
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+	padding-top: 12px;
+}
+
+.flex-ception {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	justify-content: center;
+	height: 100vh;
+}
+
+.column {
+	width: 230px;
+	z-index: 30;
+}
+	
+
+/*|||||||||||||||||||||||||||||||||||||*/
+
+
+.flex-mini-map {
+	position: relative;
+	display: flex;
+	width: 230px;
+	flex-direction: column;
+	align-items: center;	
+
+	opacity: var(--mapOpacity);
+	pointer-events: var(--mapPointer);
+
+	z-index: 40;
+}
+
+.map-fade {
+	position: relative;
+	display: flex;
+	width: 230px;
+	flex-direction: column;
+	align-items: center;	
+
+	z-index: 40;
+
+	animation-duration: 0.2s;
+	animation-timing-function: var(--type);
+	animation-play-state: running;
+	animation-name: swapper;
+	animation-fill-mode: forwards;
+
+	animation-delay: var(--mapDelay);
+	animation-direction: var(--mapDirection);
+
+	opacity: var(--mapOpacity);
+}
+
+.sub-domains-list {
+	position: absolute;
+	display: flex;
+	width: 230px;
+	flex-direction: column;
+	align-items: center;
+
+	z-index: 45;
+
+	top: 49px;
+
+	pointer-events: var(--subPointer);
+	opacity: var(--subOpacity);
+}
+
+.sub-fade {
+	position: absolute;
+	display: flex;
+	width: 230px;
+	flex-direction: column;
+	align-items: center;
+
+	z-index: 45;
+
+	animation-play-state: running;
+	animation-duration: 0.2s;
+	animation-timing-function: var(--type);
+	animation-name: swapper;
+
+	animation-direction: var(--subDirection);
+
+	animation-delay: var(--subDelay);
+	opacity: var(--subOpacity);
+
+	animation-fill-mode: forwards;
+	top: 49px;
+}
+
+.container-go {
+	display: grid;
+	place-items: center;
+	grid-template-columns: 230px;
+	grid-template-rows: 42px;
+
+	animation-duration: var(--speed);
+	animation-timing-function: var(--type);
+	animation-play-state: running;
+	animation-name: var(--direction);
+}
+
+.container {
+	display: grid;
+	place-items: center;
+	grid-template-columns: 230px;
+	grid-template-rows: 42px;
+}
+
+.grid-mini-page {
+	display: grid;
+	grid-template-columns: 20px 20px 20px 20px;
+	grid-auto-rows: 20px;
+	place-items: center;
+	
+	justify-content: center;
+	row-gap: 16px;
+	column-gap: 16px;
+}
+
+
+/*|||||||||||||||||||||||||||||||||||||*/
+img {
+	position: relative;
+	transition-duration: 0.05s;
+	padding: 10px;
+	z-index: 5;
+}
+
+img:hover {
+	box-shadow: 0px 14px 5px -5px whitesmoke;
+	border-bottom: black solid 1px;
+	z-index: 1;
+}
+
+img:active {
+	box-shadow: 0px 0px 0px gainsboro;
+}
+
+.category:hover {
+	box-shadow: 0px 3px 12px gray;
+	color: white;
+	background-color: black;
+}
+
+
+.category:active {
+	box-shadow: 0px 0px 0px white;
+
+	transition-duration: 0.04s;
+}
+
+.category {
+	box-shadow: 0px 8px 3px -3px whitesmoke;
+	text-indent: 12px;
+
+	line-height: 1.5;
+	border-bottom: black solid 1px;
+
+	width: 180px;
+	height: 22px;
+
+	letter-spacing: 1px;
+
+	font-weight: bold;
+	color: black;
+	font-size: 11pt;
+	
+	animation-fill-mode: forwards;
+
+	transition-duration: 0.04s;
+
+	cursor: pointer;
+}
+
+#list-item.category{
+	text-decoration: none;
+
+	width: 180px;
+
+	margin-top: 10px;
+
+	white-space: nowrap;
+	overflow: hidden;
+
+}
+
+/*|||||||||||||||||||||||||||||||||||||*/
+
+
+a.mini-link:link, a.mini-link:visited{
+	width: 12px;
+	height: 12px;
+	display: block;
+	transition-duration: 0.04s;
+}
+
+a.mini-link:hover {
+	width: 18px;
+	height: 18px;
+	box-shadow: 0px 4px 8px;
+	border: black solid 1px;
+
+}
+
+a.mini-link:active {
+	width: 12px;
+	height: 12px;
+	box-shadow: 0px 0px 0px;
+}
+
+#circle.mini-link:link, #circle.mini-link:visited {
+	border-radius: 30px;
+}
+
+
+/*|||||||||||||||||||||||||||||||||||||*/
+
+
+#pages-box {
+	display: flex;
+	width: 660px;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 0px;
+	padding-top: 10px;
+	padding-right: 4px;
+}
+
+.page {
+	display: grid;
+	grid-template-columns: 100px 100px 100px 100px;
+	grid-auto-rows: 80px;
+	place-items: center;
+	
+	justify-content: center;
+	row-gap: 60px;
+	column-gap: 60px;
+	z-index: 6;
+
+	border-right: 1px solid white;
+	//border-bottom-right-radius: 12px;
+	padding-right: 39px;
+	padding-left: 0px;
+	animation-duration: 0.2s;
+	animation-fill-mode: forwards;
+	animation-timing-function: linear;
+}
+
+.placeholder {
+	width: 80px;
+	height: 80px;
+	display: block;	
+}
+
+.container-big {
+	display: grid;
+	place-items: center;
+	width: 660px;
+	padding-bottom: 66px;
+
+}
+
+.container-big-go {
+	display: grid;
+	place-items: center;
+	width: 660px;
+	padding-bottom: 66px;
+
+	animation-duration: var(--speedBig);
+	animation-timing-function: var(--type);
+	animation-play-state: running;
+	animation-name: var(--nameBig);
+}
+
+.dot {
+	position: absolute;
+	height: 22px;
+	align-self: end;
+	margin-top: 10px;
+	fill: Silver;
+}
+
+.line {
+	width: 580px;
+	height: 6px;
+	border-radius: 50px;
+	background-color: Silver;
+	align-self: end;
+	margin-top: 18px;
+}
+
+#sel.line {
+	background-color: white;
+}
+
+#sel.dot {
+	fill: White;
+}
+
+.top-title {
+	width: 88vw;
+	height: 30px;
+	margin-left: 6vw;
+
+	font-weight: bold;
+	font-size: 18pt;
+	letter-spacing: 2px;
+	
+	text-indent: 3vw;
+	text-shadow: 0px 0px 0px silver;
+	
+	padding-bottom: 4px;
+	padding-top: 4px;
+
+	border-bottom: black solid 1px;	
+	box-shadow: 0px 8px 3px -3px whitesmoke;
+}
+
+.multilink {
+	position: relative;
+}
+
+.showselection {
+	position: absolute;
+	width: 21px;
+	height: 21px;
+	
+	left: 88px;
+	bottom: -8px;
+	
+
+	border-radius: 22px;
+	z-index: 3;
+	line-height: 1.55;
+	text-align: center;
+	font-size: 20pt;
+	cursor: pointer;
+	border: black solid 1px;
+	box-shadow: 0px 5px 3px whitesmoke;	
+}
+
+.showselection:hover {	
+	box-shadow: 0px 4px 5px gray;
+	color: white;
+	z-index: 7;
+
+	background-color: black;
+}
+
+.showselection:active {	
+	box-shadow: 0px 0px 0px gainsboro;
+	color: white;
+	z-index: 7;
+	background-color: black;
+}
+
+#menu.showselection {
+	position: unset;
+	margin-top: 20px;
+}
+
+.bottom-grad {
+	width: 100vw;
+	height: 30vh;
+	background-image: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1));
+
+	z-index: 12;
+	position: absolute;
+	top: 70vh;
+	pointer-events: none;
+}
+
+
+/*|||||||||||||||||||||||||||||||||||||*/
+/*|||||||||||||||||||||||||||||||||||||*/
+/*|||||||||||||||||||||||||||||||||||||*/
+@keyframes swapper {
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+}
+
+@keyframes selected {
+	0% {background-color: white;
+		color: DimGray;  
+		border-bottom: black solid 1px;}
+
+	99%{border-bottom: white solid 1px;}
+	100%{background-color: black;
+		color: white;
+		border-bottom: white none 1px;}
+}
+
+@keyframes selPage {
+	  0% {border-right: 1px solid white;
+		box-shadow: 7px 0px 3px -3px white;}
+	100% {border-right: 1px solid black;
+		box-shadow: 7px 0px 3px -3px whitesmoke;}
+}
+
+@keyframes deselected {
+	0% {background-color: white;
+		color: black;  }
+
+	100%{background-color: silver;
+		color: dimgray;}
+}
+
+@keyframes up {
+	0% {transform: translateY(0px); }
+
+	100%{transform: translateY(var(--distance));}
+}
+
+@keyframes upBig {
+	0% {transform: translateY(0px); }
+
+	100%{transform: translateY(var(--distanceBig));}
+}
+
+@keyframes topFadeOut {
+	0% {transform: translateY(0px);
+		opacity: 1;}
+	100% {transform: translateY(var(--distance)); opacity: 0.0;}
+}
+
+@keyframes topFadeOutBig {
+	0% {transform: translateY(0px);
+		opacity: 1;}
+	100% {transform: translateY(var(--distanceBig)); opacity: 0.0;}
+}
+
+@keyframes botFadeIn {
+	0% {transform: translateY(0px);
+		opacity: 0.0;}
+	100% {transform: translateY(var(--distance)); opacity: 1.0;}
+}
+
+
+@keyframes botFadeInBig {
+	0% {transform: translateY(0px);
+		opacity: 0.0;}
+	100% {transform: translateY(var(--distanceBig)); opacity: 1.0;}
+}
+
+@keyframes flatFadeOut {
+	0% {opacity: 1;}
+	100% {opacity: 0.0;}
+}
+
+@keyframes flatFadeIn {
+	0% {opacity: 0.0;}
+	100% {opacity: 1;}
+}
